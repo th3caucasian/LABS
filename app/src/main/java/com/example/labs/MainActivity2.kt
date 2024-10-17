@@ -1,18 +1,16 @@
 package com.example.labs
 
 import android.os.Bundle
-//import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-//import androidx.navigation.findNavController
-//import androidx.navigation.ui.AppBarConfiguration
-//import androidx.navigation.ui.setupActionBarWithNavController
-//import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.labs.databinding.ActivityMain2Binding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import java.util.Arrays
+import java.util.stream.Collectors.toList
 
 class MainActivity2 : AppCompatActivity() {
 
@@ -34,6 +32,15 @@ class MainActivity2 : AppCompatActivity() {
                 R.id.navigation_cities, R.id.navigation_selected, R.id.navigation_saved
             )
         )
+
+        val mRecycleView = binding.recycleView
+        mRecycleView.setHasFixedSize(true)
+        val mLayoutManager = LinearLayoutManager(this)
+        mRecycleView.layoutManager = mLayoutManager
+        val citiesList = resources.getStringArray(R.array.cities)
+        val mAdapter = MyRecycleViewAdapter(citiesList, this)
+        mRecycleView.adapter = mAdapter
+
         navView.setupWithNavController(navController)
     }
 }
