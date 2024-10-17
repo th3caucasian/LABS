@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_cities"
         android:icon="@drawable/baseline_location_city_24"
         android:title="@string/title_cities" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/baseline_bookmark_border_24"
+        android:id="@+id/navigation_selected"
+        android:icon="@drawable/baseline_domain_add_24"
         android:title="@string/title_selected" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/baseline_domain_add_24"
+        android:id="@+id/navigation_saved"
+        android:icon="@drawable/baseline_bookmark_border_24"
         android:title="@string/title_saved" />
 
 </menu>

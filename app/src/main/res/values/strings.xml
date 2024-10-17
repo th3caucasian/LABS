@@ -8,4 +8,22 @@
         <item>a</item>
         <item>1</item>
     </string-array>
+    <string-array name="cities">
+        <item>Kislovodsk</item>
+        <item>Essentuki</item>
+        <item>Taganrog</item>
+        <item>Uchkeken</item>
+        <item>Pyatigorsk</item>
+        <item>Krasnodar</item>
+        <item>Moscow</item>
+        <item>Makhachkala</item>
+        <item>Nalchik</item>
+        <item>Sochi</item>
+        <item>Karachayevsk</item>
+        <item>Cherkessk</item>
+        <item>Rostov</item>
+        <item>Foros</item>
+        <item>Baku</item>
+        <item>Skhauat</item>
+    </string-array>
 </resources>

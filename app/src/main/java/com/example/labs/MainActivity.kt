@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun btnClick(view: View?) {
-        val arr = resources.getStringArray(R.array.data)
-        if (emailfld.text.toString() == arr[0] && passfld.text.toString() == arr[1])
+        val logins = resources.getStringArray(R.array.data)
+        if (emailfld.text.toString() == logins[0] && passfld.text.toString() == logins[1])
             startActivity(Intent(this, MainActivity2::class.java))
         else
             btn.setBackgroundColor(Color.RED)

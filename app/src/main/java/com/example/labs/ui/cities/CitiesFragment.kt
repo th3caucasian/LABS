@@ -17,18 +17,13 @@ class CitiesFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val citiesViewModel =
-            ViewModelProvider(this).get(CitiesViewModel::class.java)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val citiesViewModel = ViewModelProvider(this).get(CitiesViewModel::class.java)
 
         _binding = FragmentCitiesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textHome
+        val textView: TextView = binding.textCities
         citiesViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }

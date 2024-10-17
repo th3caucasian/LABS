@@ -17,18 +17,14 @@ class SelectedFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val selectedViewModel =
             ViewModelProvider(this).get(SelectedViewModel::class.java)
 
         _binding = FragmentSelectedBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
+        val textView: TextView = binding.textSelected
         selectedViewModel.text.observe(viewLifecycleOwner) {
             textView.text = it
         }
