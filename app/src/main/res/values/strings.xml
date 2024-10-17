@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">labs</string>
     <string name="title_activity_main2">MainActivity2</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_cities">Cities</string>
+    <string name="title_selected">Selected</string>
+    <string name="title_saved">Saved</string>
     <string-array name="data">
         <item>a</item>
         <item>1</item>
