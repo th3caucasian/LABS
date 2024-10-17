@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.labs.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    lateinit var binding: ActivityMainBinding
-    lateinit var emailfld: EditText
-    lateinit var passfld: EditText
-    lateinit var btn: Button
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var emailfld: EditText
+    private lateinit var passfld: EditText
+    private lateinit var btn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
