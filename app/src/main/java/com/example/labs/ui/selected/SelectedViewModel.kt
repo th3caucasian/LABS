@@ -6,8 +6,4 @@ import androidx.lifecycle.ViewModel
 
 class SelectedViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is selected Fragment"
-    }
-    val text: LiveData<String> = _text
 }

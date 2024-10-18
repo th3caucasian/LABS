@@ -23,7 +23,9 @@ class MainActivity2 : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
-    fun onTextViewClicked() {
-        navController.navigate(R.id.navigation_selected)
+    fun onTextViewClicked(city: String) {
+        val city_name = Bundle()
+        city_name.putString("city", city)
+        navController.navigate(R.id.navigation_selected, city_name)
     }
 }

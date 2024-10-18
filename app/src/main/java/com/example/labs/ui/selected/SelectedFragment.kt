@@ -1,6 +1,7 @@
 package com.example.labs.ui.selected
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,9 +26,9 @@ class SelectedFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textSelected
-        selectedViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+        val city_name = arguments?.getString("city")
+        textView.text = city_name
+
         return root
     }
 

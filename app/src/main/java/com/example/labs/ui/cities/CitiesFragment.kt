@@ -29,9 +29,6 @@ class CitiesFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textCities
-        citiesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
 
         var callActivity: MainActivity2?
         callActivity = requireActivity() as? MainActivity2

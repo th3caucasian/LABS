@@ -15,7 +15,7 @@ class MyRecycleViewAdapter(private val mDataset: Array<String>, private val acti
         fun bind(item: String, activity: MainActivity2?) {
             mTextView.text = item
             itemView.setOnClickListener {
-                activity?.onTextViewClicked()
+                activity?.onTextViewClicked(item)
             }
         }
     }
@@ -28,7 +28,6 @@ class MyRecycleViewAdapter(private val mDataset: Array<String>, private val acti
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(mDataset[position], activity)
-        Log.e("TAG", "${mDataset[1]}, ${mDataset[3]}, ${mDataset[15]}")
     }
 
     override fun getItemCount(): Int {
