@@ -30,17 +30,16 @@ class CitiesFragment : Fragment() {
 
         val textView: TextView = binding.textCities
 
-        var callActivity: MainActivity2?
-        callActivity = requireActivity() as? MainActivity2
-        if (callActivity == null)
-            Log.e("Cities Fragment", "This context is not MainActivity2")
+        val callerActivity: MainActivity2?
+        callerActivity = requireActivity() as? MainActivity2
+        if (callerActivity == null)
+            Log.e("LOG", "This context is not MainActivity2")
         else {
             val mRecycleView = binding.recycleView
             mRecycleView.setHasFixedSize(true)
-            val mLayoutManager = LinearLayoutManager(callActivity)
+            val mLayoutManager = LinearLayoutManager(callerActivity)
             mRecycleView.layoutManager = mLayoutManager
-            val citiesList = resources.getStringArray(R.array.cities)
-            val mAdapter = MyRecycleViewAdapter(citiesList, callActivity)
+            val mAdapter = MyRecycleViewAdapter(callerActivity.citiesList, callerActivity)
             mRecycleView.adapter = mAdapter
         }
 

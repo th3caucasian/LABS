@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyRecycleViewAdapter(private val mDataset: Array<String>, private val activity: MainActivity2?): RecyclerView.Adapter<MyRecycleViewAdapter.MyViewHolder>() {
+class MyRecycleViewAdapter(private val mDataset: Array<out String>?, private val activity: MainActivity2?): RecyclerView.Adapter<MyRecycleViewAdapter.MyViewHolder>() {
 
     class MyViewHolder(v: View): RecyclerView.ViewHolder(v) {
         val mTextView: TextView = v.findViewById(R.id.rec_text_view)
 
-        fun bind(item: String, activity: MainActivity2?) {
+        fun bind(item: String?, activity: MainActivity2?) {
             mTextView.text = item
             itemView.setOnClickListener {
                 activity?.onTextViewClicked(item)
@@ -27,10 +27,10 @@ class MyRecycleViewAdapter(private val mDataset: Array<String>, private val acti
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(mDataset[position], activity)
+        holder.bind(mDataset!!.get(position), activity)
     }
 
     override fun getItemCount(): Int {
-        return mDataset.size
+        return mDataset!!.size
     }
 }
