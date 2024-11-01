@@ -11,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.labs.MainActivity2
 import com.example.labs.MyRecycleViewAdapter
-import com.example.labs.R
 import com.example.labs.databinding.FragmentCitiesBinding
 
 class CitiesFragment : Fragment() {
@@ -39,7 +38,7 @@ class CitiesFragment : Fragment() {
             mRecycleView.setHasFixedSize(true)
             val mLayoutManager = LinearLayoutManager(callerActivity)
             mRecycleView.layoutManager = mLayoutManager
-            val mAdapter = MyRecycleViewAdapter(callerActivity.citiesList, callerActivity)
+            val mAdapter = MyRecycleViewAdapter(callerActivity.citiesNameList, callerActivity)
             mRecycleView.adapter = mAdapter
         }
 

@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var emailfld: EditText
     private lateinit var passfld: EditText
     private lateinit var btn: Button
-    var citiesList = arrayOf<String>()
+    var citiesNameList = arrayOf<String>()
+    var citiesList = arrayOf<City>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         if (emailfld.text.toString() == logins[0] && passfld.text.toString() == logins[1])
         {
             val intent = Intent(this, MainActivity2::class.java)
+            intent.putExtra("city_names", citiesNameList)
             intent.putExtra("cities", citiesList)
             startActivity(intent)
         }
@@ -96,7 +98,8 @@ class MainActivity : AppCompatActivity() {
             {
                 val arrayItem = jsonArray.getJSONObject(i)
                 val cityItem = gson.fromJson(arrayItem.toString(), City::class.java)
-                citiesList += cityItem.name
+                citiesNameList += cityItem.name
+                citiesList += cityItem
                 Log.e("CITY", "name: ${cityItem.name}, country: ${cityItem.country}, population: ${cityItem.population}, language: ${cityItem.language}, square: ${cityItem.square}")
             }
         }

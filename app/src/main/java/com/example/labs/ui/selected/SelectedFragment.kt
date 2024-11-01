@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.labs.City
 import com.example.labs.databinding.FragmentSelectedBinding
+import java.io.Serializable
 
 class SelectedFragment : Fragment() {
 
@@ -26,8 +28,8 @@ class SelectedFragment : Fragment() {
         val root: View = binding.root
 
         val textView: TextView = binding.textSelected
-        val city_name = arguments?.getString("city")
-        textView.text = city_name
+        val city = arguments?.getSerializable("city") as? City
+        textView.text = city!!.name
 
         return root
     }

@@ -2,8 +2,9 @@ package com.example.labs
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class City {
+class City: Serializable {
     @SerializedName("Name")
     @Expose
     lateinit var name: String
