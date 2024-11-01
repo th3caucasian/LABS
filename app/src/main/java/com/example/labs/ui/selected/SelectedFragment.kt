@@ -27,9 +27,18 @@ class SelectedFragment : Fragment() {
         _binding = FragmentSelectedBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSelected
-        val city = arguments?.getSerializable("city") as? City
-        textView.text = city!!.name
+        val textCity: TextView = binding.textSelected
+        val textCountry: TextView = binding.textCountry
+        val textLanguage: TextView = binding.textLanguage
+        val textPopulation: TextView = binding.textPopulation
+        val textSquare: TextView = binding.textSquare
+        val city = arguments?.getSerializable("city") as City
+        textCity.text = city.name
+        textCountry.text = city.country
+        textLanguage.text = city.language
+        textPopulation.text = city.population.toString()
+        textSquare.text = city.square.toString()
+
 
         return root
     }
