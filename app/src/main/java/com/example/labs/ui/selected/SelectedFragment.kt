@@ -1,16 +1,18 @@
 package com.example.labs.ui.selected
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.labs.City
+import com.example.labs.MainActivity2
+import com.example.labs.db.City
 import com.example.labs.databinding.FragmentSelectedBinding
-import java.io.Serializable
+import com.example.labs.db.AppDatabase
+import com.example.labs.db.CityDao
+import com.example.labs.db.DatabaseProvider
 
 class SelectedFragment : Fragment() {
 
@@ -42,6 +44,7 @@ class SelectedFragment : Fragment() {
 
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

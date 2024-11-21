@@ -1,10 +1,11 @@
-package com.example.labs
+package com.example.labs.db
 
 import android.content.Context
 import android.database.DatabaseErrorHandler
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
+// НЕ ИСПОЛЬЗУЕТСЯ
 class DBHelper : SQLiteOpenHelper {
 
     constructor(context: Context?, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : super(context, name, factory, version) { }

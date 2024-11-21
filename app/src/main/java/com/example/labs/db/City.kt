@@ -1,12 +1,13 @@
-package com.example.labs
+package com.example.labs.db
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Entity
+@Entity(indices = [Index(value = ["name"], unique = true, name = "ui_City_name")])
 class City: Serializable {
     @PrimaryKey (autoGenerate = true)
     var id = 0
