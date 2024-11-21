@@ -20,6 +20,8 @@ import java.net.HttpURLConnection
 import java.net.MalformedURLException
 import java.net.URL
 
+lateinit var dbHelper: DBHelper
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -28,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btn: Button
     var citiesNameList = arrayOf<String>()
     var citiesList = arrayOf<City>()
-    lateinit var dbHelper: DBHelper
     lateinit var db: SQLiteDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,10 +100,19 @@ class MainActivity : AppCompatActivity() {
 
             val jsonArray = JSONArray(response.toString())
             val gson = Gson()
+            dbHelper = DBHelper(this, "mybd", null, 1)
+            db = dbHelper.writableDatabase
+            var cv = ContentValues()
             for (i in 0..jsonArray.length()-1)
             {
                 val arrayItem = jsonArray.getJSONObject(i)
                 val cityItem = gson.fromJson(arrayItem.toString(), City::class.java)
+                cv.put("name", cityItem.name)
+                cv.put("country", cityItem.country)
+                cv.put("population", cityItem.population)
+                cv.put("language", cityItem.language)
+                cv.put("square", cityItem.square)
+                var rowID = db.insert("City", null, cv)
                 citiesNameList += cityItem.name
                 citiesList += cityItem
                 Log.e("CITY", "name: ${cityItem.name}, country: ${cityItem.country}, population: ${cityItem.population}, language: ${cityItem.language}, square: ${cityItem.square}")
@@ -112,18 +122,28 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun dbDataWriter()
+    private fun dbDataReader()
     {
         dbHelper = DBHelper(this, "mybd", null, 1)
-        db = dbHelper.writableDatabase
-        var cv = ContentValues()
+        db = dbHelper.readableDatabase
+        val cursor = db.query("City", null, null, null, null, null, null)
+        var flag = cursor.moveToFirst()
+        val idColIndex = cursor.getColumnIndex("id")
+        val nameColIndex = cursor.getColumnIndex("name")
+        val populationColIndex = cursor.getColumnIndex("population")
+        do {
+            val id = cursor.getInt(idColIndex)
+            val name = cursor.getString(nameColIndex)
+            val population = cursor.getString(populationColIndex)
+        } while(cursor.moveToNext())
+        cursor.close()
     }
 
     private fun additionalThread() {
         val thread = Thread(Runnable {
             loadJSON()
+            dbDataReader()
         })
-        dbDataWriter()
         thread.start()
     }
 }

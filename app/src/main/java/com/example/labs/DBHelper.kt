@@ -16,11 +16,11 @@ class DBHelper : SQLiteOpenHelper {
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("create table City ("
                 +"id integer primary key autoincrement,"
-                +"Name text,"
-                +"Country text,"
-                +"Population integer,"
-                +"Language text,"
-                +"Square integer"
+                +"name text,"
+                +"country text,"
+                +"population integer,"
+                +"language text,"
+                +"square integer"
                 +");")
     }
 
