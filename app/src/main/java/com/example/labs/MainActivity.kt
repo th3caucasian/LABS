@@ -11,6 +11,8 @@ import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.labs.databinding.ActivityMainBinding
 import com.example.labs.db.AppDatabase
+import com.example.labs.db.AppUser
+import com.example.labs.db.AppUserCity
 import com.example.labs.db.City
 import com.example.labs.db.CityDao
 import com.example.labs.db.DatabaseProvider
@@ -46,7 +48,11 @@ class MainActivity : AppCompatActivity() {
 
     fun btnClick(view: View?) {
         val logins = resources.getStringArray(R.array.data)
-        if (emailfld.text.toString() == logins[0] && passfld.text.toString() == logins[1])
+        val inputUser = AppUser()
+        inputUser.login = emailfld.text.toString()
+        inputUser.password = passfld.text.toString()
+        val dbUser = cityDao.getUserByLoginAndPassword(inputUser.login, inputUser.password)
+        if (dbUser != null)
         {
             val intent = Intent(this, MainActivity2::class.java)
             intent.putExtra("city_names", citiesNameList)
@@ -113,8 +119,17 @@ class MainActivity : AppCompatActivity() {
                 Log.e("CITY", "name: ${cityItem.name}, country: ${cityItem.country}, population: ${cityItem.population}, language: ${cityItem.language}, square: ${cityItem.square}")
             }
             citiesNameList = citiesNameList.sorted().toTypedArray()
+            val userCity1 = AppUserCity(15, 1)
+            val userCity2 = AppUserCity(15, 3)
+            val userCity3 = AppUserCity(16, 6)
+            val a = cityDao.getAllUsers()
+            val b = cityDao.getAll()
+            cityDao.insertAppUserCity(userCity1)
+            cityDao.insertAppUserCity(userCity2)
+            cityDao.insertAppUserCity(userCity3)
+            val d = cityDao.getAllUsersCities()
+            val c = 1
         }
-
 
     }
 
@@ -122,6 +137,14 @@ class MainActivity : AppCompatActivity() {
     {
         db = DatabaseProvider.getDatabase(this)
         cityDao = db.cityDao()
+        val inUser = AppUser()
+        inUser.login = "al"
+        inUser.password = "1"
+        cityDao.insertUser(inUser)
+        val inUser2 = AppUser()
+        inUser.login = "alan"
+        inUser.password = "2"
+        cityDao.insertUser(inUser2)
     }
 
     private fun additionalThread() {

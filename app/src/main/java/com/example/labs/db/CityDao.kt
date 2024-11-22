@@ -17,4 +17,21 @@ interface CityDao {
     @Query("DELETE FROM City")
     fun delete()
 
+    @Insert (onConflict = OnConflictStrategy.IGNORE)
+    fun insertUser(user: AppUser)
+
+    @Query("SELECT * FROM AppUser")
+    fun getAllUsers(): List<AppUser>
+
+    @Query("SELECT * FROM AppUser WHERE login = :login AND password = :password")
+    fun getUserByLoginAndPassword(login: String, password: String): AppUser?
+
+    @Query("DELETE FROM AppUser")
+    fun deleteUsers()
+
+    @Insert (onConflict = OnConflictStrategy.IGNORE)
+    fun insertAppUserCity(appUserCity: AppUserCity)
+
+    @Query("SELECT * FROM AppUserCity")
+    fun getAllUsersCities(): List<AppUserCity>
 }
