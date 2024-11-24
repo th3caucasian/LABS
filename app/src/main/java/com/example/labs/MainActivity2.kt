@@ -28,6 +28,7 @@ class MainActivity2 : AppCompatActivity() {
         navController = findNavController(R.id.nav_host_fragment_activity_main2)
         navView.setupWithNavController(navController)
         additionalThread2()
+        ContextProvider.initialize(this)
     }
 
     fun onTextViewClicked(cityName: String?) {
@@ -37,20 +38,27 @@ class MainActivity2 : AppCompatActivity() {
         navController.navigate(R.id.navigation_selected, city)
     }
 
+    fun onCityAdded(cityName: String?) {
+        cityDao.userHasCityAdded()
+    }
+
     fun getDb()
     {
         db = DatabaseProvider.getDatabase(this)
         cityDao = db.cityDao()
         citiesList = cityDao.getAll()
-
     }
-
 
     private fun additionalThread2() {
         val thread2 = Thread(Runnable {
             getDb()
         })
         thread2.start()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ContextProvider.clearContext()
     }
 
 }

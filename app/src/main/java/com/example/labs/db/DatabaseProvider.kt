@@ -11,7 +11,6 @@ object DatabaseProvider {
     fun getDatabase(context: Context): AppDatabase {
         return database ?: synchronized(this) {
             val instance = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "room_mydb")
-                .fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build()
             database = instance

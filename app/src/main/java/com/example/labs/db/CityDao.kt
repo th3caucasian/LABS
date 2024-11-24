@@ -34,4 +34,7 @@ interface CityDao {
 
     @Query("SELECT * FROM AppUserCity")
     fun getAllUsersCities(): List<AppUserCity>
+
+    @Query("SELECT * FROM AppUserCity WHERE userId = :userId AND cityId = :cityId")
+    fun userHasCityAdded(userId: Int, cityId: Int)
 }
