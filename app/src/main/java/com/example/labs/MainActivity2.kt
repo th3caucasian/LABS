@@ -7,9 +7,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.labs.databinding.ActivityMain2Binding
 import com.example.labs.db.AppDatabase
+import com.example.labs.db.AppUserCity
 import com.example.labs.db.City
 import com.example.labs.db.CityDao
 import com.example.labs.db.DatabaseProvider
+
 
 
 class MainActivity2 : AppCompatActivity() {
@@ -19,6 +21,7 @@ class MainActivity2 : AppCompatActivity() {
     var citiesList: List<City>? = null
     lateinit var db: AppDatabase
     lateinit var cityDao: CityDao
+    var userId: Int = -1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         citiesNameList = intent.extras!!.getStringArray("city_names")
@@ -29,6 +32,7 @@ class MainActivity2 : AppCompatActivity() {
         navView.setupWithNavController(navController)
         additionalThread2()
         ContextProvider.initialize(this)
+        userId = intent.extras!!.getInt("userId")
     }
 
     fun onTextViewClicked(cityName: String?) {
@@ -39,7 +43,19 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     fun onCityAdded(cityName: String?) {
-        cityDao.userHasCityAdded()
+        val cityId = cityDao.findCityIdByName(cityName)
+        if (cityDao.userHasCityAdded(userId, cityId) == null)
+            cityDao.insertAppUserCity(AppUserCity(userId, cityId))
+        val a = cityDao.getAllUsersCities()
+        val b = 1
+    }
+
+    fun onCityDeleted(cityName: String?) {
+        val cityId = cityDao.findCityIdByName(cityName)
+        if (cityDao.userHasCityAdded(userId, cityId) != null)
+            cityDao.deleteAppUserCity(userId, cityId)
+        val a = cityDao.getAllUsersCities()
+        val b = 1
     }
 
     fun getDb()

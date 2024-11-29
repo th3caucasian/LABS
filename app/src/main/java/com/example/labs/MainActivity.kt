@@ -51,11 +51,13 @@ class MainActivity : AppCompatActivity() {
         val inputUser = AppUser()
         inputUser.login = emailfld.text.toString()
         inputUser.password = passfld.text.toString()
-        if (cityDao.getUserByLoginAndPassword(inputUser.login, inputUser.password) != null)
+        val currentUser = cityDao.getUserByLoginAndPassword(inputUser.login, inputUser.password)
+        if (currentUser != null)
         {
             val intent = Intent(this, MainActivity2::class.java)
             intent.putExtra("city_names", citiesNameList)
             intent.putExtra("cities", citiesList)
+            intent.putExtra("userId", currentUser.id)
             startActivity(intent)
         }
         else

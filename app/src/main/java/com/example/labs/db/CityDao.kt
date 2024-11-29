@@ -32,9 +32,15 @@ interface CityDao {
     @Insert (onConflict = OnConflictStrategy.IGNORE)
     fun insertAppUserCity(appUserCity: AppUserCity)
 
+    @Query("DELETE FROM appUserCity WHERE userId = :userId AND cityId = :cityId")
+    fun deleteAppUserCity(userId: Int, cityId: Int)
+
     @Query("SELECT * FROM AppUserCity")
     fun getAllUsersCities(): List<AppUserCity>
 
     @Query("SELECT * FROM AppUserCity WHERE userId = :userId AND cityId = :cityId")
-    fun userHasCityAdded(userId: Int, cityId: Int)
+    fun userHasCityAdded(userId: Int, cityId: Int): AppUserCity
+
+    @Query("SELECT id FROM City WHERE name = :name")
+    fun findCityIdByName(name: String?): Int
 }

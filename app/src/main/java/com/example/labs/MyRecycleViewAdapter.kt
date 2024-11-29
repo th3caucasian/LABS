@@ -23,16 +23,12 @@ class MyRecycleViewAdapter(private val mDataset: Array<out String>?, private val
                 val activity2Context = ContextProvider.getContext()
                 val alertBuilder = AlertDialog.Builder(activity2Context)
                 alertBuilder.setCancelable(true)
-                    .setMessage("Добавить город?")
-                    .setTitle("Хотите ли вы добавить город к себе?")
-                    .setNegativeButton("NO") { dialog, _ ->
-                        Log.i("AlertDialog", "on negative button click")
-                    }
-                    .setPositiveButton("YES") {dialog, _ ->
+                    .setTitle("Сохранить информацию о городе?")
+                    .setPositiveButton("Сохранить") { dialog, _ ->
                         activity?.onCityAdded(item)
                     }
-                    .setNeutralButton("Cancel") {dialog, _ ->
-                        Log.i("AlertDialog", "on neutral button click")
+                    .setNeutralButton("Отмена") { dialog, _ ->
+                        activity?.onCityDeleted(item)
                     }
                 val alertDialog = alertBuilder.create()
                 alertDialog.show()
