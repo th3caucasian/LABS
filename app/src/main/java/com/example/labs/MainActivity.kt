@@ -120,15 +120,6 @@ class MainActivity : AppCompatActivity() {
                 Log.e("CITY", "name: ${cityItem.name}, country: ${cityItem.country}, population: ${cityItem.population}, language: ${cityItem.language}, square: ${cityItem.square}")
             }
             citiesNameList = citiesNameList.sorted().toTypedArray()
-//            val userCity1 = AppUserCity(15, 1)
-//            val userCity2 = AppUserCity(15, 3)
-//            val userCity3 = AppUserCity(16, 6)
-//            val a = cityDao.getAllUsers()
-//            val b = cityDao.getAll()
-//            cityDao.insertAppUserCity(userCity1)
-//            cityDao.insertAppUserCity(userCity2)
-//            cityDao.insertAppUserCity(userCity3)
-              val d = cityDao.getAllUsersCities()
         }
 
     }

@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.labs.MainActivity2
-import com.example.labs.MyRecycleViewAdapter
 import com.example.labs.databinding.FragmentCitiesBinding
 
 class CitiesFragment : Fragment() {
@@ -27,18 +26,16 @@ class CitiesFragment : Fragment() {
         _binding = FragmentCitiesBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textCities
-
         val callerActivity: MainActivity2?
         callerActivity = requireActivity() as? MainActivity2
         if (callerActivity == null)
-            Log.e("LOG", "This context is not MainActivity2")
+            Log.e("LOG", "Caller activity is not MainActivity2")
         else {
-            val mRecycleView = binding.recycleView
+            val mRecycleView = binding.recycleViewCities
             mRecycleView.setHasFixedSize(true)
             val mLayoutManager = LinearLayoutManager(callerActivity)
             mRecycleView.layoutManager = mLayoutManager
-            val mAdapter = MyRecycleViewAdapter(callerActivity.citiesNameList, callerActivity)
+            val mAdapter = RecycleViewAdapterCities(callerActivity.citiesNameList, callerActivity)
             mRecycleView.adapter = mAdapter
         }
 

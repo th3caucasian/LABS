@@ -1,15 +1,16 @@
-package com.example.labs
+package com.example.labs.ui.cities
 
-import android.content.DialogInterface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
+import com.example.labs.ContextProvider
+import com.example.labs.MainActivity2
+import com.example.labs.R
 
-class MyRecycleViewAdapter(private val mDataset: Array<out String>?, private val activity: MainActivity2?): RecyclerView.Adapter<MyRecycleViewAdapter.MyViewHolder>() {
+class RecycleViewAdapterCities(private val mDataset: Array<out String>?, private val activity: MainActivity2?): RecyclerView.Adapter<RecycleViewAdapterCities.MyViewHolder>() {
 
     class MyViewHolder(v: View): RecyclerView.ViewHolder(v) {
         val mTextView: TextView = v.findViewById(R.id.rec_text_view)
@@ -28,7 +29,6 @@ class MyRecycleViewAdapter(private val mDataset: Array<out String>?, private val
                         activity?.onCityAdded(item)
                     }
                     .setNeutralButton("Отмена") { dialog, _ ->
-                        activity?.onCityDeleted(item)
                     }
                 val alertDialog = alertBuilder.create()
                 alertDialog.show()

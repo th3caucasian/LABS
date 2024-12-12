@@ -11,14 +11,17 @@ import com.example.labs.db.AppUserCity
 import com.example.labs.db.City
 import com.example.labs.db.CityDao
 import com.example.labs.db.DatabaseProvider
-
+import com.example.labs.ui.saved.RecycleViewAdapterSaved
+import java.util.TreeSet
 
 
 class MainActivity2 : AppCompatActivity() {
     private lateinit var binding: ActivityMain2Binding
     private lateinit var navController: NavController
+    private lateinit var savedCities: MutableList<String>
     var citiesNameList: Array<String>? = null
     var citiesList: List<City>? = null
+    var adapterSaved: RecycleViewAdapterSaved? = null
     lateinit var db: AppDatabase
     lateinit var cityDao: CityDao
     var userId: Int = -1
@@ -46,23 +49,29 @@ class MainActivity2 : AppCompatActivity() {
         val cityId = cityDao.findCityIdByName(cityName)
         if (cityDao.userHasCityAdded(userId, cityId) == null)
             cityDao.insertAppUserCity(AppUserCity(userId, cityId))
-        val a = cityDao.getAllUsersCities()
-        val b = 1
     }
 
     fun onCityDeleted(cityName: String?) {
         val cityId = cityDao.findCityIdByName(cityName)
         if (cityDao.userHasCityAdded(userId, cityId) != null)
             cityDao.deleteAppUserCity(userId, cityId)
-        val a = cityDao.getAllUsersCities()
-        val b = 1
+        adapterSaved!!.notifyItemRemoved(savedCities.indexOf(cityName))
+        adapterSaved!!.removeItem(cityName)
     }
 
-    fun getDb()
-    {
+    fun getSavedCities(): MutableList<String> {
+        savedCities = cityDao.getAllSavedCities(userId)
+        return savedCities
+    }
+
+    fun configureAdapterSaved(savedAdapted: RecycleViewAdapterSaved) {
+        adapterSaved = savedAdapted
+    }
+
+    fun getDb() {
         db = DatabaseProvider.getDatabase(this)
         cityDao = db.cityDao()
-        citiesList = cityDao.getAll()
+        citiesList = cityDao.getAllCities()
     }
 
     private fun additionalThread2() {

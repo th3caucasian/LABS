@@ -9,7 +9,7 @@ import androidx.room.Query
 interface CityDao {
 
     @Query("SELECT * FROM City")
-    fun getAll(): List<City>
+    fun getAllCities(): List<City>
 
     @Insert (onConflict = OnConflictStrategy.IGNORE)
     fun insert(city: City)
@@ -43,4 +43,7 @@ interface CityDao {
 
     @Query("SELECT id FROM City WHERE name = :name")
     fun findCityIdByName(name: String?): Int
+
+    @Query("SELECT c.name AS name FROM City c JOIN AppUserCity auc ON c.id = auc.cityId WHERE auc.userId = :userId")
+    fun getAllSavedCities(userId: Int): MutableList<String>
 }
